@@ -54,7 +54,7 @@ var cellTwo = new CellPhone("APPLE", "i10", "white", "1299.99");
 
 //Display Header
 console.log('\n'); 
-console.log(header.display("David", "Tays", "Excercise 1.2"));
+console.log(header.display("David", "Tays", "Excercise 1.3"));
 
 //Display details of phones
 console.log(cellOne.getDetails());
