@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- Author: David Tays 
+     Date:  12/26/17  
+     Desc:  skillz
+	 ***** Make rotating banner for bottom of page. Will only be visible at all times if i add bottom padding/margin to footer
+-->
+
+
+<html>
+    <head>
+        
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="style/style.css" />
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
+        <meta name="description" content="demonstration">
+        <meta name="keywords" content="">
+        <meta name="author" content="David Tays">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>&quot;David Tays&quot;</title>
+        <script>
+                function myFunction() {
+                    document.getElementById("field2").value = document.getElementById("field1").value;
+                }
+        </script>
+    </head>
+    <body>
+            <div class="container-fluid">
+				
+                    <div class="jumbotron">
+                        <img src="images/header1.png" class="img-responsive center-block" style="width:75%" alt="Image">
+                        <p>Welcome! Are you ready for some trivia?</p>
+                    </div>
+            </div>
+            <main class="container-fluid text-center">
+                <h1>Javascript Trivia</h1>
+
+                <button type="button" onclick="startQuiz()" style="height:100px;width:200px">Start Quiz</button>
+                <br/><br/>
+                <p>This quiz will check your knowledege of introduction Javascript techniques and properties.  Once you are finished, we will judge and label you.  Don't be afraid, it's for your own good!</p>
+
+                <br/><br/>
+
+                <form>
+                    <fieldset>
+                          <legend></legend>
+						  <p>Question1: Where in the world would you find the Spire?</p>
+                          <input type="radio" id="contactChoice1"
+							name="contact" value="email" checked>
+						  <label for="contactChoice1">Email</label>
+							<br/>
+					      <input type="radio" id="contactChoice2"
+							name="contact" value="phone">
+						  <label for="contactChoice2">Phone</label>
+							<br/>
+						  <input type="radio" id="contactChoice3"
+							name="contact" value="mail">
+						  <label for="contactChoice3">Mail</label>
+                    </fieldset>
+                </form> 
+				<fieldset>
+                          <legend>Results</legend>
+                          <img src="images/expertBadge.jpg" class="img-responsive center-block" style="height:100px;width:200px">
+                </fieldset>
+            </main>
+    </body>
+    <footer>
+        <h2>Contributors: </h2>   Nicole Winters, Natasha Colletta, David Tays, Robert Sharp
+    </footer>
