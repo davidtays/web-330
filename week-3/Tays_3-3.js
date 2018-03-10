@@ -1,5 +1,12 @@
 var header = require('../header.js');
-
+/*
+============================================
+; Title:  Assignment 3.3
+; Author: David Tays
+; Date:   7 March 2018
+; Modified By: <David Tays>
+;===========================================
+*/ 
 /*
  Expected output:
 
@@ -12,10 +19,11 @@ var header = require('../header.js');
 */
 
 // start program
+//function 
 var DatabaseSingleton = (function(){
     var instance;
     function createInstance(){
-        var postgresDatabase = new Object("Database instance initialized!");
+        var postgresDatabase = new Object("The Singleton works!! Database instance initialized!");
         return postgresDatabase;
     }
 
