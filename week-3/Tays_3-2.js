@@ -84,7 +84,7 @@ DatabaseFactory.prototype.createDatabase = function(properties) {
         //don't display databaseType property key or value
         if(propkey != 'databaseType'){
             display += "    " + propkey + ": " + db[propkey];
-            //it its not the last property, a ',' will be added and a '/n', otherwise there is no comma
+            //if its not the last property, a ',' will be added and a '/n', otherwise there is no comma
             if(flag <= Object.keys(db).length) {
                 display += ",\n";
             }else{
@@ -133,13 +133,6 @@ console.log(header.display("David", "Tays", "Excercise 3.2") + "\n");
 //output objects created
 console.log(oracle);
 console.log(informix);
-
-
-
-
-
-
-
 
 // end program
 

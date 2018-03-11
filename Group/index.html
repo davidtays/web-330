@@ -1,70 +1,136 @@
 <!DOCTYPE html>
 <!-- Author: David Tays 
-     Date:  12/26/17  
-     Desc:  skillz
-	 ***** Make rotating banner for bottom of page. Will only be visible at all times if i add bottom padding/margin to footer
+     Date:  3/11/2018 
+     Desc:  Group B project
+	 *****
 -->
 
 
 <html>
-    <head>
-        
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="style/style.css" />
-		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
-        <meta name="description" content="demonstration">
-        <meta name="keywords" content="">
-        <meta name="author" content="David Tays">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>&quot;David Tays&quot;</title>
-        <script>
-                function myFunction() {
-                    document.getElementById("field2").value = document.getElementById("field1").value;
-                }
-        </script>
-    </head>
-    <body>
-            <div class="container-fluid">
-				
-                    <div class="jumbotron">
-                        <p><strong>Welcome! Are you ready for some trivia?</strong></p>
-                    </div>
-            </div>
-            <main class="container-fluid text-center">
-                <h1>Javascript Trivia</h1>
+		<head>
+					
+			<meta charset="UTF-8">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<link rel="stylesheet" type="text/css" href="style/style.css" />
+			<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
+			<script src="../knockout-3.4.2.js"></script>
+				<meta name="description" content="demonstration">
+				<meta name="keywords" content="">
+				<meta name="author" content="David Tays">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+			<title>&quot;GroupB/Limitless&quot;</title>
+			<script>
+				/*JavaScript Trivia Questions:
+					1. The most common thing to do with objects are create them and to set, query, delete, and enumerate
+					their properties? True/False
+					Answer: True
+					2. A property has a name and a ________?
+					•	string
+					•	value
+					•	number
+					Answer: value
+					3. Event handlers allow JavaScript code to alter ________?
+					•	the behavior of windows.
+					•	the behavior of documents.
+					•	both of the above
+					Answer: both of the above. 
+					4. Client-side JavaScript code is embedded within HTML documents in four ways? True/False
+					Answer: True
+					5. Any function that uses the yield keyword is a generator function? True/False
+					Answer: True
+				*/
+				function ResultsViewModel() { 
+					this.correct = ko.observable(0);
+					this.incorrect = ko.observable(0);
+					this.rank = ko.observable("BEGINNER");
+				};
+				function TriviaViewModel() { 
+					this.question = ko.observable("????????");
+					this.answer = ko.observable("!!!!!!!!!!!");
+					this.options = ko.observableArray();
+				};
+ 				
+			</script>
+			</head>
+			<body>
+				<div class="container-fluid">
+		
+					<div class="jumbotron">
+							<p><strong>Welcome! Are you ready for some trivia?</strong></p>
+					</div>
+				</div>
+				<main class="container-fluid text-center">
+					<h1>Javascript Trivia</h1>
 
-                <button type="button" onclick="startQuiz()" style="height:100px;width:200px">Start Quiz</button>
-                <br/><br/>
-                <p>This quiz will check your knowledege of introduction Javascript techniques and properties.  Once you are finished, we will judge and label you.  Don't be afraid, it's for your own good!</p>
+					<button type="button" data-bind="click:" style="height:100px;width:200px">Start Quiz</button>
+					<br/><br/>
+					<p>This quiz will check your knowledege of introduction Javascript techniques and properties.  Once you are finished, we will judge and label you.  Don't be afraid, it's for your own good!</p>
 
-                <br/><br/>
+					<br/><br/>
 
-                <form>
-                    <fieldset>
-                          <legend></legend>
-						  <p>Question1: Where in the world would you find the Spire?</p>
-                          <input type="radio" id="answerChoice1"
-							name="answer" value="a" checked>
-						  <label for="contactChoice1">Option 1</label>
+					<form>
+						<fieldset>
+							<legend></legend>
+							<p id="question" data-bind="text: question">####</span></p>
+							<input type="radio" id="answerChoice1" name="answer" value="a">
+							<label for="contactChoice1">True</label>
 							<br/>
-					      <input type="radio" id="answerChoice2"
-							name="answer" value="b">
-						  <label for="contactChoice2">Option 2</label>
+								<input type="radio" id="answerChoice2" name="answer" value="b">
+							<label for="contactChoice2">False</label>
 							<br/>
-						  <input type="radio" id="answerChoice3"
-							name="answer" value="c">
-						  <label for="contactChoice3">Option 3</label>
-                    </fieldset>
-                </form> 
-				<fieldset>
-                          <legend>Results</legend>
-                          <img src="images/expertBadge.jpg" class="img-responsive center-block" style="height:100px;width:200px">
-                </fieldset>
-            </main>
-    </body>
-    <footer>
-        <h2>Contributors: </h2>   Nicole Winters, Natasha Colletta, David Tays, Robert Sharp
-    </footer>
+							
+							<p>Question 2. A property has a name and a ________?</p>
+							<input type="radio" id="answerChoice1" name="answer2" value="a">
+							<label for="contactChoice1">string</label>
+							<br/>
+							<input type="radio" id="answerChoice2" name="answer2" value="b">
+							<label for="contactChoice2">value</label>
+							<br/>
+							<input type="radio" id="answerChoice3" name="answer2" value="c">
+							<label for="contactChoice3">number</label>
+							<br/>
+							
+							<p>Question 3. Event handlers allow JavaScript code to alter ________?</p>
+							<input type="radio" id="answerChoice1" name="answer3" value="a">
+							<label for="contactChoice1">the behavior of windows.</label>
+							<br/>
+							<input type="radio" id="answerChoice2" name="answer3" value="b">
+							<label for="contactChoice2">the behavior of documents.</label>
+							<br/>
+							<input type="radio" id="answerChoice3" name="answer3" value="c">
+							<label for="contactChoice3">both of the above</label>
+							<br/>
+							
+							<p>Question 4. Client-side JavaScript code is embedded within HTML documents in four ways? True/False</p>
+							<input type="radio" id="answerChoice1" name="answer4" value="a">
+							<label for="contactChoice1">True</label>
+							<br/>
+							<input type="radio" id="answerChoice2" name="answer4" value="b">
+							<label for="contactChoice2">False</label>
+							<br/>
+							
+							<p>Question 5. Any function that uses the yield keyword is a generator function? True/False</p>
+							<input type="radio" id="answerChoice1" name="answer5" value="a">
+							<label for="contactChoice1">True</label>
+							<br/>
+							<input type="radio" id="answerChoice2" name="answer5" value="b">
+							<label for="contactChoice2">False</label>
+							<br/>
+							
+						</fieldset>
+					</form> 
+					<fieldset>
+						<legend>Results</legend>
+							<img src="images/expertBadge.jpg" class="img-responsive center-block" style="height:100px;width:200px">
+					</fieldset>
+				</main>
+			</body>
+			<footer>
+					<h2>Contributors: </h2>   Nicole Winters, Natasha Colletta, David Tays, Robert Sharp
+			</footer>
+			<script>
+				ko.applyBindings(new TriviaViewModel(), document.getElementById('question')); 
+			</script>
+</html>
