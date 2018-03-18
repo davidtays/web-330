@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 5.2 - The Proxy Pattern</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <!-- jquery Reference Library -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+<body>
+    <h2>Proxy Example</h2>
+    <button id="myButton">Show values of the 'Coin'</button>
+    <br/>
+    <span id="spanTag"></span>
+
+<script>
+    $(function() {
+        var coin = {
+            type: "nickel",
+            year: "1977",
+            value: "$0.05",
+            condition: "poor",
+            display: function(){
+                $("#spanTag").html("");
+                $("#spanTag").append("<br/>Type: " + this.type + "<br/>Year: " + this.year +"<br/>Value: " + this.value +"<br/>Condition: " + this.condition);
+            }
+        };
+        $("#myButton").click($.proxy(coin, "display"));
+    });
+</script>
+
+
+</body>
+</html>
