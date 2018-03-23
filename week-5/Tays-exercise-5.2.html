@@ -1,20 +1,43 @@
+<!--/*
+============================================
+; Title:  Assignment 5.2
+; Author: David Tays
+; Date:   18 March 2018
+; Modified By: <David Tays>
+; Description: Proxy Pattern
+;===========================================
+*/ -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Exercise 5.2 - The Proxy Pattern</title>
     <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- jquery Reference Library -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 </head>
 <body>
-    <h2>Proxy Example</h2>
-    <button id="myButton">Show values of the 'Coin'</button>
-    <br/>
-    <span id="spanTag"></span>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">Home</a>
+    </nav>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                    <h2>Exercise 5.2 - Proxy Example</h2>
+                    <button class="btn btn-primary" id="myButton">Show values of the 'Coin'</button>
+                    <br/>
+                    <span id="spanTag"></span>
+            </div>
+        </div>
+    </div>
+    
 
 <script>
+    //coin object
     $(function() {
         var coin = {
             type: "nickel",
@@ -22,10 +45,13 @@
             value: "$0.05",
             condition: "poor",
             display: function(){
+				//clear the span tag
                 $("#spanTag").html("");
+				//display the properties of 'this'(the coin) using the proxy pattern
                 $("#spanTag").append("<br/>Type: " + this.type + "<br/>Year: " + this.year +"<br/>Value: " + this.value +"<br/>Condition: " + this.condition);
             }
         };
+        // use the proxy to call the coins display function on #myButton        
         $("#myButton").click($.proxy(coin, "display"));
     });
 </script>
