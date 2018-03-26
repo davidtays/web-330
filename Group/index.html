@@ -6,7 +6,7 @@
 -->
 
 
-<html>
+<html lang="en">
 	<head>
 				
 		<meta charset="UTF-8">
@@ -56,122 +56,119 @@
 				Answer: Function (parameter1, parameter2, parameter3)
 				10. Setting breakpoints allows you to stop your code and examine it for errors before restarting it again. True/False
 				Answer: True
-
 			*/
 			
 
-			var TriviaViewModel = function() { 
-				
-				this.question = "question";
-				
-				
-			};
-			function TriviaViewModel() { 
-				var question = function(){
-					this.q = ko.observable();
-					this.a = ko.observable();	
-					this.options = ko.observableArray();
-				}
-				var questions = new observableArray();
-				var load = function() {
-					questions.push(new question().q(1).a("c#").options["Microsoft C# 4.0", "question", "q's"]);
-					questions.push(new question().q(1).a("c#").options["Microsoft C# 4.0", "question", "q's"]);
-					questions.push(new question().q(1).a("c#").options["Microsoft C# 4.0", "question", "q's"]);
-					questions.push(new question().q(1).a("c#").options["Microsoft C# 4.0", "question", "q's"]);
-				};
-				
-			};
+			
+			
 			
 		</script>
+		
 		</head>
 		<body>
 			<div class="container-fluid">
 	
-							<div class="jumbotron">
-									<p><strong>Welcome! Are you ready for some trivia?</strong></p>
-							</div>
+						<div class="jumbotron">
+								<p><strong>Welcome! Are you ready for some trivia?</strong></p>
+						</div>
 			</div>
 			<main class="container-fluid text-center">
 				<h1>Javascript Trivia</h1>
 
-				<button type="button" onclick="startQuiz()" style="height:100px;width:200px">Start Quiz</button>
+				<button type="button"  style="height:100px;width:200px">Start Quiz</button>
 				<br/><br/>
 				<p>This quiz will check your knowledege of introduction Javascript techniques and properties.  Once you are finished, we will judge and label you.  Don't be afraid, it's for your own good!</p>
 
 				<br/><br/>
-
-				<form>
-					<fieldset>
-						<legend></legend>
-						<p><span data-bind="text: question">####</span></p>
-						<input type="radio" id="answerChoice1" name="answer" value="a">
-						<label for="contactChoice1">True</label>
-						<br/>
-							<input type="radio" id="answerChoice2"
-						name="answer" value="b">
-						<label for="contactChoice2">False</label>
-						<br/>
-						
-						<p>Question 2. A property has a name and a ________?</p>
-												<input type="radio" id="answerChoice1"
-						name="answer2" value="a">
-						<label for="contactChoice1">string</label>
-						<br/>
-							<input type="radio" id="answerChoice2"
-						name="answer2" value="b">
-						<label for="contactChoice2">value</label>
-						<br/>
-						<input type="radio" id="answerChoice3"
-						name="answer2" value="c">
-						<label for="contactChoice3">number</label>
-						<br/>
-						
-						<p>Question 3. Event handlers allow JavaScript code to alter ________?</p>
-												<input type="radio" id="answerChoice1"
-						name="answer3" value="a">
-						<label for="contactChoice1">the behavior of windows.</label>
-						<br/>
-							<input type="radio" id="answerChoice2"
-						name="answer3" value="b">
-						<label for="contactChoice2">the behavior of documents.</label>
-						<br/>
-						<input type="radio" id="answerChoice3"
-						name="answer3" value="c">
-						<label for="contactChoice3">both of the above</label>
-						<br/>
-						
-						<p>Question 4. Client-side JavaScript code is embedded within HTML documents in four ways? True/False</p>
-												<input type="radio" id="answerChoice1"
-						name="answer4" value="a">
-						<label for="contactChoice1">True</label>
-						<br/>
-							<input type="radio" id="answerChoice2"
-						name="answer4" value="b">
-						<label for="contactChoice2">False</label>
-						<br/>
-						
-						<p>Question 5. Any function that uses the yield keyword is a generator function? True/False</p>
-												<input type="radio" id="answerChoice1"
-						name="answer5" value="a">
-						<label for="contactChoice1">True</label>
-						<br/>
-							<input type="radio" id="answerChoice2"
-						name="answer5" value="b">
-						<label for="contactChoice2">False</label>
-						<br/>
-						
-					</fieldset>
-				</form> 
-				<fieldset>
+				<div data-bind = "template: {name: 'trivia-template', data: selectedQuestion}"></div>
+				<!-- fieldset>
 					<legend>Results</legend>
 						<img src="images/expertBadge.jpg" class="img-responsive center-block" style="height:100px;width:200px">
+				</fieldset> -->
+				
+			
+		  </main>
+		  <script type="text/html" id = "trivia-template">
+				<p data-bind="text: question">####</p>
+				<fieldset>
+					<div data-bind="foreach: options">
+						<input type="radio" name="optionGroup" data-bind="value:$index, checked:$parent.selectedRadio, checkedValue:$index">
+						<label for="optionGroup" data-bind="text: $data">True</label>
+						<br/>
+					</div>
 				</fieldset>
-			</main>
+				<button data-bind='click: $parent.nextQuestion'>Next</button>
+		  </script>
+		  <script type="text/javascript">//need to create a question object. than I can make 10 different objects off that prototype and maybe get one to show up after loading those objects into the array. 
+				
+			function TriviaViewModel() {
+				this.q1 = {
+					question: 'Q1',
+					options: ['yes','no'],
+					answer: 'no'
+				};
+				this.q2 = {
+					question: 'Q2',
+					options: ['yes','no','maybe'],
+					answer: 'no'
+				};
+				this.q3 = {
+					question: 'Q3',
+					options: ['yes','no'],
+					answer: 'no'
+				};
+				this.q4 = {
+					question: 'Q4',
+					options: ['yes','no','maybe'],
+					answer: 'no'
+				};
+				this.q5 = {
+					question: 'Q5',
+					options: ['yes','no'],
+					answer: 'no'
+				};
+				this.q6 = {
+					question: 'Q6',
+					options: ['yes','no','maybe'],
+					answer: 'no'
+				};
+				this.q7 = {
+					question: 'Q7',
+					options: ['yes','no'],
+					answer: 'no'
+				};
+				this.q8 = {
+					question: 'Q8',
+					options: ['yes','no','maybe'],
+					answer: 'no'
+				};
+				this.q9 = {
+					question: 'Q9',
+					options: ['yes','no'],
+					answer: 'no'
+				};
+				this.q10 = {
+					question: 'Q10',
+					options: ['yes','no','maybe'],
+					answer: 'no'
+				};
+				this.questions = ko.observableArray([
+					this.q1, this.q2, this.q3, this.q4, this.q5, this.q6, this.q7, this.q8, this.q9, this.q10
+				]);
+				
+				this.qNum = ko.observable(2);
+				var questionPicked = this.questions()[this.qNum()];
+				this.selectedQuestion = ko.observable(questionPicked);
+				this.nextQuestion = function(){
+					this.qNum = parseInt(this.qNum + "1");
+				};
+			};
+			ko.applyBindings(new TriviaViewModel());
+		  </script>
 		</body>
 		<footer>
-				<h2>Contributors: </h2>   Nicole Winters, Natasha Colletta, David Tays, Robert Sharp
+				<h2>Contributors </h2>   <span>Nicole Winters, Natasha Colletta, David Tays, Robert Sharp</span>
 		</footer>
-		<script>
-			ko.applyBindings(new TriviaViewModel()); 
-		</script>
+		
+		
 </html>
