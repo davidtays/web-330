@@ -2,8 +2,10 @@
 <!-- Author: David Tays 
      Date:  02/18/2018
      Desc:  groupB JavaScript Trivia
-	 ***** Make rotating banner for bottom of page. Will only be visible at all times if i add bottom padding/margin to footer
--->
+	 ***** FOCUS ON ANSWER DECLARATIONS AND TEMPLATE FOR THE RESULTS
+	 ***** ALSO, COPY AND PASTE ACTUAL QUESTIONS IN THE PROPER ARRAY PROPERTIES
+	 ***** FULLY COMMENTED FOR YOUR PLEASURE
+	 -->
 
 
 <html lang="en">
@@ -21,7 +23,155 @@
 			<meta name="author" content="David Tays">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		<title>&quot;GroupB/Limitless&quot;</title>
-		<script>
+		
+		</head>
+		<body>
+			<!-- Header image background on jumbotron in css-->
+			<div class="container-fluid">
+				<div class="jumbotron">
+					<p><strong>Welcome! Are you ready for some trivia?</strong></p>
+				</div>
+			</div>
+			<main class="container-fluid text-center">
+				<h1>Javascript Trivia</h1>
+
+				<!-- We need the button bound to an event that makes the first question visible -->
+				<button type="button"  style="height:100px;width:200px" data-bind="click: show">Start Quiz</button>
+				<br/><br/>
+				<p>This quiz will check your knowledege of introduction Javascript techniques and properties.  Once you are finished, we will judge and label you.  Don't be afraid, it's for your own good!</p>
+				<!-- The button will make this 'trivia-template' template visible, the selectedQuestion is currently the third in the array -->
+				<br/><br/>
+				<div data-bind="visible: show">
+					<div data-bind = "template: {name: 'trivia-template', data: selectedQuestion} "></div>
+				</div>
+								
+				<!-- This section will be made put in a template like the 'trivia-template' that is below and made visible when all of the trivia questions have a selected value ('an answer') associated with them-->
+				<!-- ************************************** -->
+				<!-- <fieldset>
+					<legend>Results</legend>
+						<img src="images/expertBadge.jpg" class="img-responsive center-block" style="height:100px;width:200px">
+				</fieldset> -->
+				<!-- ************************************** -->
+			
+		  </main>
+		  <script type="text/html" id = "trivia-template">
+			<!-- this is the template for the questions and options of answers and the next button -->
+			
+				<p data-bind="text: question">####</p>
+				<fieldset>
+					<div data-bind="foreach: options">
+						<input type="radio" name="optionGroup" data-bind="value:$index, checked:$parent.selectedRadio, checkedValue:$index">
+						<label for="optionGroup" data-bind="text: $data">True</label>
+						<br/>
+					</div>
+					<button type="button" data-bind="click: $root.back">Back</button>
+					<button type="button" data-bind="click: $root.next">Next</button>
+					
+				</fieldset>
+				<!-- After figuring the logic for this, we can reverse the logic for a 'Back' button that WILL NEED added***YOu caN SEe It 
+				IS DONE!!!! EUREKAAAA!! -->
+				
+			
+		  </script>
+		  <script type="text/javascript">
+			
+			function TriviaViewModel() {
+				// Absolutely had to make variable for 'this'.
+				// Cannot reach the variables of model using 'this.something'
+				// from inside the functions of the model unless calling self.blah
+				self = this;
+				
+				//function updates the qNum property and selectedQuestion
+				self.next = function(){					
+					var num = self.qNum() + 1;
+					// this allows the quiz to go to question 1 if on question 10 when next is clicked
+					if(num >= 10){
+						num = 0;					
+					}
+					// update model observables (could be another function)
+					self.qNum(num);	
+					self.selectedQuestion(self.questions()[self.qNum()]);
+				};
+				//function updates the qNum property and selectedQuestion
+				self.back = function(){					
+					var num = self.qNum() - 1;
+					alert("yaya" + " " + num);
+					// this allows the quiz to go to question 10 if on question 1 when back is clicked
+					if(num < 0){
+						num = 9;					
+					}
+					// update model observables (could be another function)
+					self.qNum(num);	
+					self.selectedQuestion(self.questions()[self.qNum()]);
+					alert("yaya done" + self.selectedQuestion().question);
+				};
+				// This is changed when 'start quiz' is clicked to make the div visible
+				self.show = ko.observable(false);
+				// array of our questions **NEEDS COPY AND PASTE OF PROPERTIES FROM THE COMMENTED INFORMATION BELOW
+				self.questions = ko.observableArray([
+					{
+					question: 'Q1',
+					options: ['yes','no'],
+					answer: 'no'
+					},
+					{
+					question: 'Q2',
+					options: ['yes','no','maybe'],
+					answer: 'no'
+					},
+					{
+					question: 'Q3',
+					options: ['yes','no'],
+					answer: 'no'
+					},
+					{
+					question: 'Q4',
+					options: ['yes','no','maybe'],
+					answer: 'no'
+					},
+					{
+					question: 'Q5',
+					options: ['yes','no'],
+					answer: 'no'
+					},
+					{
+					question: 'Q6',
+					options: ['yes','no','maybe'],
+					answer: 'no'
+					},
+					{
+					question: 'Q7',
+					options: ['yes','no'],
+					answer: 'no'
+					},
+					{
+					question: 'Q8',
+					options: ['yes','no','maybe'],
+					answer: 'no'
+					},
+					{
+					question: 'Q9',
+					options: ['yes','no'],
+					answer: 'no'
+					},
+					{
+					question: 'Q10',
+					options: ['yes','no','maybe'],
+					answer: 'no'
+					}
+				]);
+				//INITIAL DECLARATIONS
+				self.qNum = ko.observable(0);
+				self.selectedQuestion = ko.observable(self.questions()[self.qNum()]);
+				
+				// STIL NEED TO CREATE DECLARATIONS FOR ANSWER VALUES FROM RADIO BUTTONS
+				// THESE WILL BE USED TO VALIDATE THAT THE TRIVIA HAS BEEN COMPLETED
+				// THEY WILL ALSO BE USED TO VERIFY THE BADGE AND DISPLAY THE RESULTS TO THE 'HUNGRY FOR KNOWLEDE' USER
+				
+			};
+			// applyBindings has to be called to make the model accessible
+			ko.applyBindings(new TriviaViewModel());
+
 			/*JavaScript Trivia Questions:
 				1. The most common thing to do with objects are create them and to set, query, delete, and enumerate
 				their properties? True/False
@@ -57,113 +207,6 @@
 				10. Setting breakpoints allows you to stop your code and examine it for errors before restarting it again. True/False
 				Answer: True
 			*/
-			
-
-			
-			
-			
-		</script>
-		
-		</head>
-		<body>
-			<div class="container-fluid">
-	
-						<div class="jumbotron">
-								<p><strong>Welcome! Are you ready for some trivia?</strong></p>
-						</div>
-			</div>
-			<main class="container-fluid text-center">
-				<h1>Javascript Trivia</h1>
-
-				<button type="button"  style="height:100px;width:200px">Start Quiz</button>
-				<br/><br/>
-				<p>This quiz will check your knowledege of introduction Javascript techniques and properties.  Once you are finished, we will judge and label you.  Don't be afraid, it's for your own good!</p>
-
-				<br/><br/>
-				<div data-bind = "template: {name: 'trivia-template', data: selectedQuestion}"></div>
-				<!-- fieldset>
-					<legend>Results</legend>
-						<img src="images/expertBadge.jpg" class="img-responsive center-block" style="height:100px;width:200px">
-				</fieldset> -->
-				
-			
-		  </main>
-		  <script type="text/html" id = "trivia-template">
-				<p data-bind="text: question">####</p>
-				<fieldset>
-					<div data-bind="foreach: options">
-						<input type="radio" name="optionGroup" data-bind="value:$index, checked:$parent.selectedRadio, checkedValue:$index">
-						<label for="optionGroup" data-bind="text: $data">True</label>
-						<br/>
-					</div>
-				</fieldset>
-				<button data-bind='click: $parent.nextQuestion'>Next</button>
-		  </script>
-		  <script type="text/javascript">//need to create a question object. than I can make 10 different objects off that prototype and maybe get one to show up after loading those objects into the array. 
-				
-			function TriviaViewModel() {
-				this.q1 = {
-					question: 'Q1',
-					options: ['yes','no'],
-					answer: 'no'
-				};
-				this.q2 = {
-					question: 'Q2',
-					options: ['yes','no','maybe'],
-					answer: 'no'
-				};
-				this.q3 = {
-					question: 'Q3',
-					options: ['yes','no'],
-					answer: 'no'
-				};
-				this.q4 = {
-					question: 'Q4',
-					options: ['yes','no','maybe'],
-					answer: 'no'
-				};
-				this.q5 = {
-					question: 'Q5',
-					options: ['yes','no'],
-					answer: 'no'
-				};
-				this.q6 = {
-					question: 'Q6',
-					options: ['yes','no','maybe'],
-					answer: 'no'
-				};
-				this.q7 = {
-					question: 'Q7',
-					options: ['yes','no'],
-					answer: 'no'
-				};
-				this.q8 = {
-					question: 'Q8',
-					options: ['yes','no','maybe'],
-					answer: 'no'
-				};
-				this.q9 = {
-					question: 'Q9',
-					options: ['yes','no'],
-					answer: 'no'
-				};
-				this.q10 = {
-					question: 'Q10',
-					options: ['yes','no','maybe'],
-					answer: 'no'
-				};
-				this.questions = ko.observableArray([
-					this.q1, this.q2, this.q3, this.q4, this.q5, this.q6, this.q7, this.q8, this.q9, this.q10
-				]);
-				
-				this.qNum = ko.observable(2);
-				var questionPicked = this.questions()[this.qNum()];
-				this.selectedQuestion = ko.observable(questionPicked);
-				this.nextQuestion = function(){
-					this.qNum = parseInt(this.qNum + "1");
-				};
-			};
-			ko.applyBindings(new TriviaViewModel());
 		  </script>
 		</body>
 		<footer>
