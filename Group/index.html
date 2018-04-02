@@ -110,54 +110,54 @@
 				// array of our questions **NEEDS COPY AND PASTE OF PROPERTIES FROM THE COMMENTED INFORMATION BELOW
 				self.questions = ko.observableArray([
 					{
-					question: 'Q1',
-					options: ['yes','no'],
-					answer: 'no'
+					question: '1. The most common thing to do with objects are create them and to set, query, delete, and enumerate their properties?',
+					options: ['True','False'],
+					answer: 'True'
 					},
 					{
-					question: 'Q2',
-					options: ['yes','no','maybe'],
-					answer: 'no'
+					question: '2. A property has a name and a ________?',
+					options: ['string','value','number'],
+					answer: 'value'
 					},
 					{
-					question: 'Q3',
-					options: ['yes','no'],
-					answer: 'no'
+					question: '3. Event handlers allow JavaScript code to alter ________?',
+					options: ['the behavior of windows','the behavior of documents','all of the above'],
+					answer: 'all of the above'
 					},
 					{
-					question: 'Q4',
-					options: ['yes','no','maybe'],
-					answer: 'no'
+					question: '4. Client-side JavaScript code is embedded within HTML documents in four ways?',
+					options: ['True','False'],
+					answer: 'True'
 					},
 					{
-					question: 'Q5',
-					options: ['yes','no'],
-					answer: 'no'
+					question: '5. Any function that uses the yield keyword is a generator function?',
+					options: ['True','False'],
+					answer: 'True'
 					},
 					{
-					question: 'Q6',
-					options: ['yes','no','maybe'],
-					answer: 'no'
+					question: '6. Which of the following is a correctly written function?',
+					options: ['Function () []','Function {} ()','Function () {}'],
+					answer: 'Function () {}'
 					},
 					{
-					question: 'Q7',
-					options: ['yes','no'],
-					answer: 'no'
+					question: '7. A For loop executes a certain block of code provided that a certain expression remains true.',
+					options: ['True','False'],
+					answer: 'False: this describes a While loop'
 					},
 					{
-					question: 'Q8',
-					options: ['yes','no','maybe'],
-					answer: 'no'
+					question: '8. If x = 3, then x === "3" must be true right?',
+					options: ['True','False'],
+					answer: 'False: using "===" means the variables have equal values and types'
 					},
 					{
-					question: 'Q9',
-					options: ['yes','no'],
-					answer: 'no'
+					question: '9. Which Function with its parameters is written correctly?',
+					options: ['Function (parameter1 parameter2 parameter3)','Function (parameter1, parameter2, parameter3)','Function (parameter1; parameter2; parameter3)'],
+					answer: 'Function (parameter1, parameter2, parameter3)'
 					},
 					{
-					question: 'Q10',
-					options: ['yes','no','maybe'],
-					answer: 'no'
+					question: '10. Setting breakpoints allows you to stop your code and examine it for errors before restarting it again.',
+					options: ['True','False'],
+					answer: 'True'
 					}
 				]);
 				//INITIAL DECLARATIONS
@@ -171,7 +171,6 @@
 			};
 			// applyBindings has to be called to make the model accessible
 			ko.applyBindings(new TriviaViewModel());
-
 			/*JavaScript Trivia Questions:
 				1. The most common thing to do with objects are create them and to set, query, delete, and enumerate
 				their properties? True/False
