@@ -34,13 +34,14 @@
             <label for="txtFirst">First Name:</label>
             <input type="text" class="form-control" data-bind="value: firstName" id="txtFirst"/>
         </div>
-        <!-- if -->
-        <div data-bind="if: displayFirst">
+        <!-- if the value returned for displayFirst is not null or empty, show div -->
+        <div data-bind="if: firstName">
             <div class="form-group">
                 <label for="txtLast">Last Name:</label>
                 <input type="text" class="form-control" data-bind="value: lastName" id="txtLast"/>
             </div>                
         </div>
+        <!-- if the value returned for lastName is not null or empty, show div -->
         <div data-bind="if:lastName">
             <h2><span id="displayFull" class="alert-success" data-bind="text: displayFull"></span></h2>
         </div>
@@ -50,7 +51,7 @@
     function PersonViewModel(){
         this.firstName = ko.observable("");
         this.lastName = ko.observable("");
-
+        
         this.displayFirst = ko.pureComputed(function(){
             return this.firstName();
         }, this);

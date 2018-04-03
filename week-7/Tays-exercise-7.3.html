@@ -36,8 +36,9 @@
                     <th>Price</th>
                 </tr>
             </thead>
+            <!-- Look in TextBookViewModel for books and make a row for each entry-->
             <tbody data-bind="foreach: books">
-                <tr>
+                <tr><!-- grab the title and price of book -->
                     <td data-bind="text: title"></td>
                     <td data-bind="text: price"></td>
                 </tr>
