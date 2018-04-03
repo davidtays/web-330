@@ -51,10 +51,6 @@
     function PersonViewModel(){
         this.firstName = ko.observable("");
         this.lastName = ko.observable("");
-        
-        this.displayFirst = ko.pureComputed(function(){
-            return this.firstName();
-        }, this);
 
         this.displayFull = ko.pureComputed(function(){
             return this.firstName() + " " + this.lastName();
